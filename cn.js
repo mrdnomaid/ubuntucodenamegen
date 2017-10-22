@@ -16,16 +16,28 @@ function addZero(what) {
   }
 }
 
-
-var months = [4,4,4,10,10];
-currentYr = parseInt(new Date().getFullYear().toString().substr(2,2));
+var months = [4, 4, 4, 10, 10];
+currentYr = parseInt(new Date().getFullYear().toString().substr(2, 2));
 document.getElementById('year').innerHTML = Math.floor(Math.random() * (currentYr + 5)) + 4;
-document.getElementById('month').innerHTML = addZero(months[Math.floor(Math.random()*months.length)]);
+document.getElementById('month').innerHTML = addZero(months[Math.floor(Math.random() * months.length)]);
+
+if (window.location.hash) {
+  letter = window.location.hash.charAt(1);
+} else {
+  letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+  letter = letters[Math.floor(Math.random() * letters.length)];
+}
 
 $.get('animals.txt', function(text) {
-  animals = text.split('\n');
-  animal = animals[Math.floor(Math.random() * animals.length)];
+  animals = shuffleArray(text.split('\n'));
+  for (var i = 0; i < animals.length; i++) {
+    if (animals[i].charAt(0).toLowerCase() == letter.toLowerCase()) {
+      animal = animals[i];
+      break;
+    }
+  }
   letter = animal.charAt(0);
+
 
   div = document.getElementById('response');
 
@@ -34,7 +46,7 @@ $.get('animals.txt', function(text) {
     adjs = shuffleArray(text.split('\n'));
 
     for (var i = 0; i < adjs.length; i++) {
-      if (adjs[i].charAt(0 ) == letter.toLowerCase()) {
+      if (adjs[i].charAt(0) == letter.toLowerCase()) {
         adj = adjs[i];
         write(adj);
         break;
