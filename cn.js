@@ -17,9 +17,10 @@ function addZero(what) {
 }
 
 
+var months = [4,4,4,10,10];
 currentYr = parseInt(new Date().getFullYear().toString().substr(2,2));
 document.getElementById('year').innerHTML = Math.floor(Math.random() * (currentYr + 5)) + 4;
-document.getElementById('month').innerHTML = addZero(Math.floor(Math.random() * 12) + 1);
+document.getElementById('month').innerHTML = addZero(months[Math.floor(Math.random()*months.length)]);
 
 $.get('animals.txt', function(text) {
   animals = text.split('\n');
