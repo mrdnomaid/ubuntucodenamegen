@@ -8,6 +8,19 @@ function shuffleArray(array) {
   return array;
 }
 
+function addZero(what) {
+  if (what.toString().length == 1) {
+    return what = '0' + what;
+  } else {
+    return what;
+  }
+}
+
+
+currentYr = parseInt(new Date().getFullYear().toString().substr(2,2));
+document.getElementById('year').innerHTML = Math.floor(Math.random() * (currentYr + 5)) + 4;
+document.getElementById('month').innerHTML = addZero(Math.floor(Math.random() * 12) + 1);
+
 $.get('animals.txt', function(text) {
   animals = text.split('\n');
   animal = animals[Math.floor(Math.random() * animals.length)];
