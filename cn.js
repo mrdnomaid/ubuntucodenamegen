@@ -22,7 +22,11 @@ document.getElementById('year').innerHTML = Math.floor(Math.random() * (currentY
 document.getElementById('month').innerHTML = addZero(months[Math.floor(Math.random() * months.length)]);
 
 if (window.location.hash) {
-  letter = window.location.hash.charAt(1);
+  if (window.location.hash.charAt(1) == 'x') {
+    letter = 'y'
+  } else {
+    letter = window.location.hash.charAt(1);
+  }
 } else {
   letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
   letter = letters[Math.floor(Math.random() * letters.length)];
